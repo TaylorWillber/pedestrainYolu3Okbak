@@ -1,0 +1,46 @@
+1.对项目创建新环境
+创建：conda create -n 名称 python=3.7
+激活：conda activate 名称
+2.安装pytorch
+3.pip install --ignore-installed PyYAML
+4.deepsort参数：https://pan.baidu.com/s/1YJ1iPpdFTlUyLFoonYvozg#list/path=/
+密码fbuw
+5.pip 使用清华原安装：pip install 名称 -i https://pypi.tuna.tsinghua.edu.cn/simple
+6.Python 命令行工具 argparse 模块使用详解:
+import argparse
+在执行 parse_args() 之前，所有追加到命令行的参数都不会生效
+parser = argparse.ArgumentParser()
+parser.parse_args()
+
+7.detection.py中detection类可以获取到bbox所有属性
+8. os.listdir(path='')其中参数path为需要列出的目录路径。
+该函数返回指定的文件夹包含的文件或文件夹的名字的列表。
+os.walk(path)返回三个值：parent, dirnames, filenames，
+分别表示path的路径、path路径下的文件夹的名字和path路径下文件夹以外的其他文件
+os.path.join(path,each_file)路径拼接
+
+9.
+#isinstance函数来判断一个对象是否是一个已知的类型，类似 type()
+assert isinstance(ori_img, np.ndarray), "input must be a numpy array!"
+# dtype结构化数组类型并加以使用astype( )函数转换数据类型
+img = img.astype(np.float) / 255.
+
+10img = torch.from_numpy(img).float().permute(2, 0, 1).unsqueeze(0)
+torch.from_numpy()方法把数组转换成张量，且二者共享内存
+permute(dims)将tensor的维度换位,参数是一系列的整数，代表原来张量的维度
+squeeze默认去掉tensor的维度为1的维度，该维度可以通过参数dim指定
+unsqueeze在tensor中增加一个新的指定维度，原来维度序列向两边移动
+
+11
+由于这个阶段的optimizer是你自己写的SGD，只需要进行数值计算，不需要创建计算图（
+默认PyTorch会给张量计算创建计算图），所以关掉这个功能，用no_grad这个上下文管理器，
+在作用域内只做计算，不记录计算图
+requires_grad=True 要求计算梯度
+
+requires_grad=False 不要求计算梯度
+
+with torch.no_grad()或者@torch.no_grad()中的数据不需要计算梯度，也不会进行反向传播
+（torch.no_grad()是新版本pytorch中volatile的替代）
+"""
+
+""""
