@@ -31,15 +31,17 @@ def gotoSendMSG():
     if request.method == 'POST':
 
         user_input = request.form.get('name')
-
+        print(user_input)
+        # print(user_input,"video/my_videoLine.mkv")
         yolov3_deepsort.runPro(user_input)
         consumer = KafkaConsumer('test', bootstrap_servers=["192.168.6.153:9092"])
-        for msg in consumer:
-            # str(msg, encoding="utf-8")
-            recv = "value=%s" % bytes.decode(msg.value)
-            # print(msg.value)
-            print(recv,"----------------------------------------------")
-            img_url = return_img_stream(recv).decode()
+        # for msg in consumer:
+        #     # str(msg, encoding="utf-8")
+        #     recv = "value=%s" % bytes.decode(msg.value)
+        #     # print(msg.value)
+        #     print(recv,"----------------------------------------------")
+        #     img_url = return_img_stream(recv).decode()
+        img_url = return_img_stream(user_input).decode()
         return render_template('sendMsg_ok.html', userinput=user_input, pictureName=img_url)
         # img_path = 'output/img288.jpg'
         # img_path = '/home/xd/Desktop/pedestrainYolu3Okbak/output/img336.jpg'
